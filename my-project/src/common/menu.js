@@ -2,7 +2,7 @@ import { isUrl } from '../utils/utils';
 
 const menuData = [{
   name: '页面管理',
-  icon: 'dashboard',
+  icon: 'switcher',
   path: 'document',
   children: [{
     name: '导航管理',
@@ -17,11 +17,11 @@ const menuData = [{
   }],
 }, {
   name: '广告管理',
-  icon: 'book',
+  icon: 'form',
   path: 'adv',
 }, {
   name: '活动管理',
-  icon: 'form',
+  icon: 'skin',
   path: 'act',
   authority: 'admin',
   children: [{
@@ -40,15 +40,15 @@ const menuData = [{
   }],
 }, {
   name: '消息推送管理',
-  icon: 'book',
+  icon: 'message',
   path: 'message',
 }, {
   name: '用户管理',
-  icon: 'book',
+  icon: 'user',
   path: 'users',
 }, {
   name: '优惠券&红包',
-  icon: 'table',
+  icon: 'red-envelope',
   path: 'coupon',
   children: [{
     name: '优惠券管理',
@@ -59,7 +59,7 @@ const menuData = [{
   }],
 }, {
   name: '其他管理',
-  icon: 'profile',
+  icon: 'appstore-o',
   path: 'other',
   children: [{
     name: '运费模板管理',

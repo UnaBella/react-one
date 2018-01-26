@@ -17,6 +17,7 @@ export default {
         type: 'save',
         payload: response,
       });
+
     },
     *add({ payload, callback }, { call, put }) {
       const response = yield call(addRule, payload);

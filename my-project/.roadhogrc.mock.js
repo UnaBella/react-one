@@ -134,4 +134,5 @@ const proxy = {
   },
 };
 
-export default true ? { '/*': 'http://172.16.10.100:9999/' } : delay(proxy, 1000);
+// export default true ? { '/*': 'http://172.16.10.100:9999/' } : delay(proxy, 1000);
+export default noProxy ? {} : delay(proxy, 1000);

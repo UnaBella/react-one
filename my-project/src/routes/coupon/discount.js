@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
-import StandardTable from '../../components/StandardTable';
+import CouponTable from '../../components/CouponTable';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
 
 import styles from './discount.less';
@@ -61,7 +61,7 @@ export default class TableList extends PureComponent {
     });
   }
 
-  handleStandardTableChange = (pagination, filtersArg, sorter) => {
+  handleCouponTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
     const { formValues } = this.state;
 
@@ -339,12 +339,12 @@ export default class TableList extends PureComponent {
                 )
               }
             </div>
-            <StandardTable
+            <CouponTable
               selectedRows={selectedRows}
               loading={loading}
               data={data}
               onSelectRow={this.handleSelectRows}
-              onChange={this.handleStandardTableChange}
+              onChange={this.handleCouponTableChange}
             />
           </div>
         </Card>

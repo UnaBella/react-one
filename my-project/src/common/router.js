@@ -83,9 +83,9 @@ export const getRouterData = (app) => {
     // 页面管理-小满生活
     '/document/life': {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
-      hideInBreadcrumb: true,
-      name: '页面管理',
-      authority: 'admin',
+      // hideInBreadcrumb: true,
+      // name: '页面管理',
+      // authority: 'admin',
     },
     // 广告管理
     '/adv': {
@@ -117,11 +117,11 @@ export const getRouterData = (app) => {
     },
     // 优惠券 & 红包 - 优惠券管理
     '/coupon/discount': {
-      component: dynamicWrapper(app, ['rule'], () => import('../routes/coupon/discount')),
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 优惠券 & 红包 - 红包管理
     '/coupon/money': {
-      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
+      component: dynamicWrapper(app, ['rule'], () => import('../routes/coupon/discount')),
     },
     // 其他管理 - 运费模板管理
     '/other/freight': {
@@ -147,15 +147,6 @@ export const getRouterData = (app) => {
     '/other/config': {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
-    // '/profile/advanced': {
-    //   component: dynamicWrapper(app, ['profile'], () => import('../routes/Profile/AdvancedProfile')),
-    // },
-    // '/result/success': {
-    //   component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),
-    // },
-    // '/result/fail': {
-    //   component: dynamicWrapper(app, [], () => import('../routes/Result/Error')),
-    // },
     '/exception/403': {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
