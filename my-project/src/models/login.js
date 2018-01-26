@@ -1,4 +1,4 @@
-import { fakeAccountLogin } from '../services/api';
+import { fakeAccountLogin, realLogin } from '../services/api';
 import { setAuthority } from '../utils/authority';
 
 export default {
@@ -10,7 +10,9 @@ export default {
 
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
+      // const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(realLogin, payload);
+      console.log(payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,

@@ -3,82 +3,82 @@ import { isUrl } from '../utils/utils';
 const menuData = [{
   name: '页面管理',
   icon: 'dashboard',
-  path: 'dashboard',
+  path: 'document',
   children: [{
     name: '导航管理',
-    path: 'analysis',
+    path: 'nav',
   }, {
     name: '专题管理',
-    path: 'monitor',
+    path: 'sub',
   }, {
     name: '小满生活',
-    path: 'workplace',
+    path: 'life',
     // hideInMenu: true,
   }],
 }, {
   name: '广告管理',
   icon: 'book',
-  path: 'exception',
+  path: 'adv',
 }, {
   name: '活动管理',
   icon: 'form',
-  path: 'form',
+  path: 'act',
+  authority: 'admin',
   children: [{
     name: '抽奖活动管理',
-    path: 'basic-form',
+    path: 'lottery',
   }, {
     name: '促销活动管理',
-    path: 'step-form',
+    path: 'promotion',
   }, {
     name: '推广URL管理',
     authority: 'admin',
-    path: 'step-form/result',
+    path: 'url',
   }, {
     name: '皮肤管理',
-    path: 'step-form/confirm',
+    path: 'skin',
   }],
 }, {
   name: '消息推送管理',
   icon: 'book',
-  path: 'exception',
+  path: 'message',
 }, {
   name: '用户管理',
   icon: 'book',
-  path: '',
+  path: 'users',
 }, {
   name: '优惠券&红包',
   icon: 'table',
-  path: 'list',
+  path: 'coupon',
   children: [{
     name: '优惠券管理',
-    path: 'basic-list',
+    path: 'discount',
   }, {
     name: '红包管理',
-    path: 'table-list',
+    path: 'money',
   }],
 }, {
   name: '其他管理',
   icon: 'profile',
-  path: 'profile',
+  path: 'other',
   children: [{
     name: '运费模板管理',
-    path: 'basic',
+    path: 'freight',
   }, {
     name: '帮助中心管理',
-    path: 'advanced',
-    authority: 'admin',
+    path: 'help',
   }, {
     name: 'App发布管理',
-    path: 'search',
+    path: 'app',
   }, {
     name: '会员反馈信息',
-    path: 'search/projects',
+    path: 'feedback',
   }, {
     name: '缓存管理',
-    path: 'card-list/articles',
+    path: 'cache',
   }, {
     name: '服务配置',
-    path: 'search',
+    path: 'config',
   }],
 }];
 

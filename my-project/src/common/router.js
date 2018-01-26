@@ -9,8 +9,7 @@ const modelNotExisted = (app, model) => (
   // eslint-disable-next-line
   !app._models.some(({ namespace }) => {
     return namespace === model.substring(model.lastIndexOf('/') + 1);
-  })
-);
+  }));
 
 // wrapper of dynamic
 const dynamicWrapper = (app, models, component) => {
@@ -74,89 +73,89 @@ export const getRouterData = (app) => {
       component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
     },
     // 页面管理-导航管理
-    '/dashboard/analysis': {
-      component: dynamicWrapper(app, ['chart'], () => import('../routes/Exception/403')),
+    '/document/nav': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 页面管理-专题管理
-    '/dashboard/monitor': {
-      component: dynamicWrapper(app, ['monitor'], () => import('../routes/Exception/403')),
+    '/document/sub': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 页面管理-小满生活
-    '/dashboard/workplace': {
-      component: dynamicWrapper(app, ['project', 'activities', 'chart'], () => import('../routes/Exception/403')),
-      // hideInBreadcrumb: true,
-      // name: '工作台',
-      // authority: 'admin',
+    '/document/life': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
+      hideInBreadcrumb: true,
+      name: '页面管理',
+      authority: 'admin',
     },
     // 广告管理
-    '/exception': {
+    '/adv': {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 活动管理-抽奖活动管理
-    '/form/basic-form': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Exception/403')),
+    '/act/lottery': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 活动管理-促销活动管理
-    '/form/step-form': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Exception/403')),
+    '/act/promotion': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 活动管理-推广URL管理
-    '/form/step-form/info': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Exception/403')),
+    '/act/url': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 活动管理-皮肤管理
-    '/form/step-form/confirm': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Exception/403')),
+    '/act/skin': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 消息推送管理
-    '/form/step-form/result': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Exception/403')),
+    '/message': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 用户管理
-    '/form/advanced-form': {
-      component: dynamicWrapper(app, ['form'], () => import('../routes/Exception/403')),
+    '/users': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 优惠券 & 红包 - 优惠券管理
-    '/list/table-list': {
-      component: dynamicWrapper(app, ['rule'], () => import('../routes/Exception/403')),
+    '/coupon/discount': {
+      component: dynamicWrapper(app, ['rule'], () => import('../routes/coupon/discount')),
     },
     // 优惠券 & 红包 - 红包管理
-    '/list/basic-list': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/Exception/403')),
+    '/coupon/money': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 其他管理 - 运费模板管理
-    '/list/card-list': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/Exception/403')),
+    '/other/freight': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 其他管理 - 帮助中心管理
-    '/list/search': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/Exception/403')),
+    '/other/help': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 其他管理 - App发布管理
-    '/list/search/projects': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/Exception/403')),
+    '/other/app': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 其他管理 - 会员反馈信息
-    '/list/search/applications': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/Exception/403')),
+    '/other/feedback': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 其他管理 - 缓存管理
-    '/list/search/articles': {
-      component: dynamicWrapper(app, ['list'], () => import('../routes/Exception/403')),
+    '/other/cache': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 其他管理 - 服务配置
-    '/profile/basic': {
-      component: dynamicWrapper(app, ['profile'], () => import('../routes/Exception/403')),
+    '/other/config': {
+      component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
-    '/profile/advanced': {
-      component: dynamicWrapper(app, ['profile'], () => import('../routes/Profile/AdvancedProfile')),
-    },
-    '/result/success': {
-      component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),
-    },
-    '/result/fail': {
-      component: dynamicWrapper(app, [], () => import('../routes/Result/Error')),
-    },
+    // '/profile/advanced': {
+    //   component: dynamicWrapper(app, ['profile'], () => import('../routes/Profile/AdvancedProfile')),
+    // },
+    // '/result/success': {
+    //   component: dynamicWrapper(app, [], () => import('../routes/Result/Success')),
+    // },
+    // '/result/fail': {
+    //   component: dynamicWrapper(app, [], () => import('../routes/Result/Error')),
+    // },
     '/exception/403': {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },

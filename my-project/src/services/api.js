@@ -67,6 +67,13 @@ export async function fakeAccountLogin(params) {
   });
 }
 
+export async function realLogin(params) {
+  return request('/usertest/validate', {
+    method: 'POST',
+    body: params,
+  });
+}
+
 export async function fakeRegister(params) {
   return request('/api/register', {
     method: 'POST',
