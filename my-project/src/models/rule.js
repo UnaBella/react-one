@@ -1,4 +1,4 @@
-import { queryRule, removeRule, addRule } from '../services/api';
+import { queryRule, removeRule, addRule, pubRule } from '../services/api';
 
 export default {
   namespace: 'rule',
@@ -11,13 +11,19 @@ export default {
   },
 
   effects: {
+    *pub({ payload }, { call, put }) {
+      const response = yield call(pubRule, payload);
+      yield put({
+        type: 'pubs',
+        payload,
+      });
+    },
     *fetch({ payload }, { call, put }) {
       const response = yield call(queryRule, payload);
       yield put({
         type: 'save',
         payload: response,
       });
-
     },
     *add({ payload, callback }, { call, put }) {
       const response = yield call(addRule, payload);
@@ -39,6 +45,13 @@ export default {
 
   reducers: {
     save(state, action) {
+      return {
+        ...state,
+        data: action.payload,
+      };
+    },
+    pubs(state, action) {
+      console.log(action);
       return {
         ...state,
         data: action.payload,

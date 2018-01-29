@@ -33,6 +33,12 @@ export async function addRule(params) {
   });
 }
 
+export async function pubRule(params) {
+  return request('/server/test', {
+    method: 'POST',
+    body: params,
+  });
+}
 export async function fakeSubmitForm(params) {
   return request('/api/forms', {
     method: 'POST',

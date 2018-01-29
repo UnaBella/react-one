@@ -3,6 +3,7 @@ import moment from 'moment';
 import { Table, Alert, Badge, Divider } from 'antd';
 import styles from './index.less';
 import { Switch } from 'antd';
+
 const statusMap = ['default', 'processing', 'success', 'error'];
 class CouponTable extends PureComponent {
   state = {
@@ -40,16 +41,21 @@ class CouponTable extends PureComponent {
     this.handleRowSelectChange([], []);
   }
 
+  handleSwitchChange = (record, checked) => {
+    this.props.onSwitchChange(record, checked);
+  }
+
   render() {
-    function onChange(checked) {
-      console.log(`switch to ${checked}`);
-    }
     const { selectedRowKeys, totalCallNo } = this.state;
     const { data: { list, pagination }, loading } = this.props;
-    console.log(this.props);
     const status = ['关闭', '运行中', '已上线', '异常'];
+    const statusS = [true, false];
 
     const columns = [
+      {
+        title: 'text',
+        dataIndex: 'text',
+      },
       {
         title: '红包号',
         dataIndex: 'no',
@@ -140,8 +146,27 @@ class CouponTable extends PureComponent {
       },
       {
         title: '是否发布',
-        render: () => (
-          <Switch defaultChecked onChange={onChange} />
+        dataIndex: 'statusS',
+        filters: [
+          {
+            checked: statusS[0],
+            value: 0,
+          },
+          {
+            checked: statusS[1],
+            value: 1,
+          },
+          {
+            checked: statusS[1],
+            value: 2,
+          },
+          {
+            checked: statusS[1],
+            value: 3,
+          },
+        ],
+        render: (val, record) => (
+          <Switch checked={statusS[val]} onChange={checked => this.handleSwitchChange(record, checked)} />
         ),
       },
       {

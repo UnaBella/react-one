@@ -61,6 +61,13 @@ export default class TableList extends PureComponent {
     });
   }
 
+  onSwitchChange = (record, checked) => {
+    this.props.dispatch({
+      type: 'rule/pub',
+      payload: { record, checked },
+    });
+  }
+
   handleCouponTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
     const { formValues } = this.state;
@@ -185,6 +192,7 @@ export default class TableList extends PureComponent {
       modalVisible: false,
     });
   }
+
 
   renderSimpleForm() {
     const { getFieldDecorator } = this.props.form;
@@ -345,6 +353,7 @@ export default class TableList extends PureComponent {
               data={data}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleCouponTableChange}
+              onSwitchChange={this.onSwitchChange}
             />
           </div>
         </Card>

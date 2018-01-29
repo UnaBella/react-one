@@ -132,6 +132,8 @@ const proxy = {
       path: '/base/category/list',
     });
   },
+  'GET /server/*': 'http://172.16.10.100:9999/',
+  'POST /server/*': 'http://172.16.10.100:9999/',
 };
 
 // export default true ? { '/*': 'http://172.16.10.100:9999/' } : delay(proxy, 1000);

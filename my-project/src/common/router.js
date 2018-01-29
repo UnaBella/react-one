@@ -120,6 +120,7 @@ export const getRouterData = (app) => {
       component: dynamicWrapper(app, [], () => import('../routes/Exception/403')),
     },
     // 优惠券 & 红包 - 红包管理
+
     '/coupon/money': {
       component: dynamicWrapper(app, ['rule'], () => import('../routes/coupon/discount')),
     },
