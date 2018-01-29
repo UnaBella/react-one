@@ -64,14 +64,14 @@ class CouponTable extends PureComponent {
         title: '名称',
         dataIndex: 'description',
       },
-      // {
-      //   title: '红包类型',
-      //   dataIndex: 'description',
-      // },
-      // {
-      //   title: '红包子类型',
-      //   dataIndex: 'description',
-      // },
+      {
+        title: '红包类型',
+        dataIndex: 'packetType',
+      },
+      {
+        title: '红包子类型',
+        dataIndex: 'childPacketType',
+      },
       {
         title: '红包数量',
         dataIndex: 'callNo',

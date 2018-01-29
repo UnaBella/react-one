@@ -4,7 +4,7 @@ import { getUrlParams } from './utils';
 let tableListDataSource = [];
 for (let i = 0; i < 46; i += 1) {
   tableListDataSource.push({
-    text: 2,
+    text: i,
     key: i,
     disabled: ((i % 6) === 0),
     href: 'https://ant.design',
@@ -95,6 +95,7 @@ export function postRule(req, res, u, b) {
     case 'post':
       const i = Math.ceil(Math.random() * 10000);
       tableListDataSource.unshift({
+
         key: i,
         href: 'https://ant.design',
         avatar: ['https://gw.alipayobjects.com/zos/rmsportal/eeHMaZBwmTvLdIwMfBpg.png', 'https://gw.alipayobjects.com/zos/rmsportal/udxAbMEhpwthVVcjLXik.png'][i % 2],
