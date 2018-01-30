@@ -16,9 +16,9 @@ export default class LoginPage extends Component {
     autoLogin: true,
   }
 
-  onTabChange = (type) => {
-    this.setState({ type });
-  }
+  // onTabChange = (type) => {
+  //   this.setState({ type });
+  // }
 
   handleSubmit = (err, values) => {
     const { type } = this.state;
@@ -52,13 +52,13 @@ export default class LoginPage extends Component {
       <div className={styles.main}>
         <Login
           defaultActiveKey={type}
-          onTabChange={this.onTabChange}
+          // onTabChange={this.onTabChange}
           onSubmit={this.handleSubmit}
         >
           <Tab key="account" tab="账户密码登录">
             {
-              login.status === 'error' &&
-              login.type === 'account' &&
+              login.success === 'no' &&
+              login.error === 'wrong' &&
               !login.submitting &&
               this.renderMessage('账户或密码错误（admin/888888）')
             }

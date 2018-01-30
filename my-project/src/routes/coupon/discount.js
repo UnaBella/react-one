@@ -3,6 +3,7 @@ import { connect } from 'dva';
 import { Row, Col, Card, Form, Input, Select, Icon, Button, Dropdown, Menu, InputNumber, DatePicker, Modal, message } from 'antd';
 import CouponTable from '../../components/CouponTable';
 import PageHeaderLayout from '../../layouts/PageHeaderLayout';
+// import { getToken } from '../../utils/GlobalContent';
 
 import styles from './discount.less';
 
@@ -67,6 +68,14 @@ export default class TableList extends PureComponent {
       payload: { record, checked },
     });
   }
+
+  //-----------------------
+  // handleTest = () => {
+  //   const token = getToken();
+  //   console.log(token.token);
+  // };
+
+  //------------------------
 
   handleCouponTableChange = (pagination, filtersArg, sorter) => {
     const { dispatch } = this.props;
@@ -292,6 +301,7 @@ export default class TableList extends PureComponent {
         <div style={{ overflow: 'hidden' }}>
           <span style={{ float: 'right', marginBottom: 24 }}>
             <Button type="primary" htmlType="submit">查询</Button>
+            {/*<Button type="primary" onClick={this.handleTest}>test</Button>*/}
             <Button style={{ marginLeft: 8 }} onClick={this.handleFormReset}>重置</Button>
             <a style={{ marginLeft: 8 }} onClick={this.toggleForm}>
               收起 <Icon type="up" />

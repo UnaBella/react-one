@@ -1,5 +1,6 @@
 import { stringify } from 'qs';
 import request from '../utils/request';
+import { getTokenRequest } from '../utils/GlobalContent';
 
 export async function queryProjectNotice() {
   return request('/api/project/notice');
@@ -73,12 +74,6 @@ export async function fakeAccountLogin(params) {
   });
 }
 
-export async function realLogin(params) {
-  return request('/usertest/validate', {
-    method: 'POST',
-    body: params,
-  });
-}
 
 export async function fakeRegister(params) {
   return request('/api/register', {
@@ -89,4 +84,14 @@ export async function fakeRegister(params) {
 
 export async function queryNotices() {
   return request('/api/notices');
+}
+
+//-------------------------------------------------------------
+
+// 登陆接口
+export async function realLogin(params) {
+  return request('/xmback/validate', {
+    method: 'POST',
+    body: params,
+  });
 }

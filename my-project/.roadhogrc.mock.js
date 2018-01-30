@@ -68,30 +68,30 @@ const proxy = {
   'GET /api/fake_chart_data': getFakeChartData,
   'GET /api/profile/basic': getProfileBasicData,
   'GET /api/profile/advanced': getProfileAdvancedData,
-  'POST /api/login/account': (req, res) => {
-    const { password, userName, type } = req.body;
-    if (password === '888888' && userName === 'admin') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      return;
-    }
-    if (password === '123456' && userName === 'user') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'user',
-      });
-      return;
-    }
-    res.send({
-      status: 'error',
-      type,
-      currentAuthority: 'guest',
-    });
-  },
+  // 'POST /api/login/account': (req, res) => {
+  //   const { password, userName, type } = req.body;
+  //   if (password === '888888' && userName === 'admin') {
+  //     res.send({
+  //       status: 'ok',
+  //       type,
+  //       currentAuthority: 'admin',
+  //     });
+  //     return;
+  //   }
+  //   if (password === '123456' && userName === 'user') {
+  //     res.send({
+  //       status: 'ok',
+  //       type,
+  //       currentAuthority: 'user',
+  //     });
+  //     return;
+  //   }
+  //   res.send({
+  //     status: 'error',
+  //     type,
+  //     currentAuthority: 'guest',
+  //   });
+  // },
   'POST /api/register': (req, res) => {
     res.send({ status: 'ok', currentAuthority: 'user' });
   },
@@ -132,9 +132,53 @@ const proxy = {
       path: '/base/category/list',
     });
   },
-  'GET /server/*': 'http://172.16.10.100:9999/',
-  'POST /server/*': 'http://172.16.10.100:9999/',
+
+  //   'GET /xmback/*': 'http://172.16.10.100:9999/',
+  //   'POST /xmback/*': 'http://172.16.10.100:9999/',
+  //};
+  //
+  // // export default true ? { '/xmback/*': 'http://172.16.10.100:9999/' } : delay(proxy, 1000);
+  // export default noProxy ? {} : delay(proxy, 1000);
+  //---------------------------------------------------------------------------
+  'POST /xmback/validate': (req, res) => {
+    const { password, userName } = req.body;
+    if (password === '777777' && userName === 'lihao') {
+      res.send({
+        success: 'ok',
+        error: 'no',
+        results: {
+          currentAuthority: 'admin',
+          userId: 'lihao',
+          token: '1234567abcd',
+        },
+      });
+      return;
+    }
+    if (password === '888888' && userName === 'admin') {
+      res.send({
+        success: 'ok',
+        error: 'no',
+        results: {
+          currentAuthority: 'admin',
+          userId: 'admin',
+          token: '7654321abcd',
+        },
+      });
+      return;
+    }
+    res.send({
+      success: 'no',
+      error: 'wrong',
+      results: {
+        currentAuthority: '',
+        userId: '',
+        token: '',
+      },
+    });
+  },
+  //'GET /xmback/*': 'http://172.16.10.100:9999/',
+  //'POST /xmback/*': 'http://172.16.10.100:9999/',
 };
 
-// export default true ? { '/*': 'http://172.16.10.100:9999/' } : delay(proxy, 1000);
+// export default true ? { '/xmback/*': 'http://172.16.10.100:9999/' } : delay(proxy, 1000);
 export default noProxy ? {} : delay(proxy, 1000);

@@ -1,24 +1,29 @@
-import { fakeAccountLogin, realLogin } from '../services/api';
-import { setAuthority } from '../utils/authority';
+import { realLogin } from '../services/api';
+import { setAuthority, setToken } from '../utils/GlobalContent';
 
 export default {
   namespace: 'login',
 
   state: {
-    status: undefined,
+    success: undefined,
+    error: undefined,
+    results: {
+      currentAuthority: undefined,
+      userId: undefined,
+      token: undefined,
+    },
   },
 
   effects: {
     *login({ payload }, { call, put }) {
-      const response = yield call(fakeAccountLogin, payload);
-      // const response = yield call(realLogin, payload);
-      console.log(payload);
+      // const response = yield call(fakeAccountLogin, payload);
+      const response = yield call(realLogin, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       });
       // Login successfully
-      if (response.status === 'ok') {
+      if (response.success === 'ok') {
         // 非常粗暴的跳转,登陆成功之后权限会变成user或admin,会自动重定向到主页
         // Login success after permission changes to admin or user
         // The refresh will automatically redirect to the home page
@@ -41,8 +46,13 @@ export default {
         yield put({
           type: 'changeLoginStatus',
           payload: {
-            status: false,
-            currentAuthority: 'guest',
+            success: 'no',
+            error: undefined,
+            results: {
+              currentAuthority: 'guest',
+              userId: undefined,
+              token: undefined,
+            },
           },
         });
         window.location.reload();
@@ -52,11 +62,12 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setAuthority(payload.results.currentAuthority);
+      setToken(payload.results);
       return {
         ...state,
-        status: payload.status,
-        type: payload.type,
+        success: payload.success,
+        error: payload.error,
       };
     },
   },
