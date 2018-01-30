@@ -140,14 +140,14 @@ const proxy = {
   // // export default true ? { '/xmback/*': 'http://172.16.10.100:9999/' } : delay(proxy, 1000);
   // export default noProxy ? {} : delay(proxy, 1000);
   //---------------------------------------------------------------------------
-  'POST /xmback/validate': (req, res) => {
+  'POST /xmback/user/validate': (req, res) => {
     const { password, userName } = req.body;
     if (password === '777777' && userName === 'lihao') {
       res.send({
         success: 'ok',
         error: 'no',
         results: {
-          currentAuthority: 'admin',
+          currentAuthority: 'user',
           userId: 'lihao',
           token: '1234567abcd',
         },
@@ -175,6 +175,28 @@ const proxy = {
         token: '',
       },
     });
+  },
+  'POST /xmback/user/currentUser': (req, res) => {
+    res.send({
+      success: 'ok',
+      error: 'no',
+      results: {
+        currentUser: {
+          name: 'admin',
+          avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
+        },
+      },
+    });
+  },
+  'GET /xmback/coupon/queryCouponDiscount': getRule,
+  'POST /xmback/coupon/queryCouponDiscounts': {
+    $params: {
+      pageSize: {
+        desc: '分页',
+        exp: 2,
+      },
+    },
+    $body: postRule,
   },
   //'GET /xmback/*': 'http://172.16.10.100:9999/',
   //'POST /xmback/*': 'http://172.16.10.100:9999/',

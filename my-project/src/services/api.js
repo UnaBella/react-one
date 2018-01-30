@@ -25,6 +25,7 @@ export async function removeRule(params) {
 }
 
 export async function addRule(params) {
+  // console.log(getTokenRequest(params));
   return request('/api/rule', {
     method: 'POST',
     body: {

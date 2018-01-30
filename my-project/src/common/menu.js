@@ -56,6 +56,7 @@ const menuData = [{
   }, {
     name: '红包管理',
     path: 'money',
+    authority: 'admin',
   }],
 }, {
   name: '其他管理',

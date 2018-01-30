@@ -1,4 +1,4 @@
-import { realLogin } from '../services/api';
+import { validate } from '../services/xmUser';
 import { setAuthority, setToken } from '../utils/GlobalContent';
 
 export default {
@@ -17,7 +17,7 @@ export default {
   effects: {
     *login({ payload }, { call, put }) {
       // const response = yield call(fakeAccountLogin, payload);
-      const response = yield call(realLogin, payload);
+      const response = yield call(validate, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,

@@ -70,7 +70,7 @@ function getFlatMenuData(menus) {
 export const getRouterData = (app) => {
   const routerConfig = {
     '/': {
-      component: dynamicWrapper(app, ['user', 'login'], () => import('../layouts/BasicLayout')),
+      component: dynamicWrapper(app, ['xmUser', 'login', 'xmGlobal'], () => import('../layouts/XmLayout')),
     },
     // 页面管理-导航管理
     '/document/nav': {
@@ -123,6 +123,7 @@ export const getRouterData = (app) => {
 
     '/coupon/money': {
       component: dynamicWrapper(app, ['rule'], () => import('../routes/coupon/discount')),
+      // hideInBreadcrumb: true,
     },
     // 其他管理 - 运费模板管理
     '/other/freight': {
