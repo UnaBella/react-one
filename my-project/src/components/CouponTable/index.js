@@ -1,10 +1,10 @@
 import React, { PureComponent, Fragment } from 'react';
 import moment from 'moment';
-import { Table, Alert, Badge, Divider, Switch } from 'antd';
+import { Table, Alert, Badge, Divider, Switch, Menu, Dropdown, Icon, Button } from 'antd';
 import styles from './index.less';
 
 
-const statusMap = [ 'success', 'processing', 'default'];
+const statusMap = ['processing', 'success', 'default'];
 class CouponTable extends PureComponent {
   // state = {
   //   selectedRowKeys: [],
@@ -42,24 +42,32 @@ class CouponTable extends PureComponent {
   // }
 
   handleSwitchChange = (record, checked) => {
+    console.log('========');
+
+    console.log(record);
+    console.log(checked);
     this.props.onSwitchChange(record, checked);
   }
 
   render() {
     // const { selectedRowKeys, totalCallNo } = this.state;
     const { data: { list, pagination }, loading } = this.props;
-    const packetStatus = ['代金券紅包', '現金紅包(即將上綫)'];
+    const packetStatus = ['代金券红包', '现金红包(即将上线)'];
     const childPacketStatus = ['等额红包', '拼手气红包'];
     const status = ['已发布', '未发布', '已结束'];
-    const statusS = [true, false];
+    const statusS = [true, false, false];
 
     const columns = [
       {
         title: '红包号',
+        fixed: 'left',
+        width: 100,
         dataIndex: 'no',
       },
       {
         title: '名称',
+        fixed: 'left',
+        width: 100,
         dataIndex: 'description',
       },
       {
@@ -153,6 +161,8 @@ class CouponTable extends PureComponent {
       },
       {
         title: '是否发布',
+        fixed: 'right',
+        width: 100,
         dataIndex: 'statusS',
         render: (val, record) => (
           <Switch checked={statusS[val]} onChange={checked => this.handleSwitchChange(record, checked)} />
@@ -160,14 +170,61 @@ class CouponTable extends PureComponent {
       },
       {
         title: '操作',
-        render: () => (
-          <Fragment>
-            <a href="">配置</a>
-            <Divider type="vertical" />
-            <a href="">订阅警报</a>
+        fixed: 'right',
+        width: 130,
+        render() {
+          const menu = (
+            <Menu>
+              <Menu.Item key="0" onClick={() => this.alertDe(true)}>
+                查看等额红包详情
+              </Menu.Item>
+              <Menu.Divider />
+              <Menu.Item key="1" onClick={() => this.alertDe(true)}>
+                查看拼手气红包详情
+              </Menu.Item>
+              <Menu.Divider />
+              <Menu.Item key="2" onClick={() => this.alertDe(true)}>
+                查看指定品牌红包详情
+              </Menu.Item>
+              <Menu.Divider />
+              <Menu.Item key="3" onClick={() => this.alertDe(true)}>
+                查看指定分类红包详情
+              </Menu.Item>
+              <Menu.Divider />
+              <Menu.Item key="4" onClick={() => this.alertDe(true)}>
+                查看指定商品红包详情
+              </Menu.Item>
+            </Menu>
+          );
+          const menu2 = (
+            <Menu>
+              <Menu.Item key="4" onClick={() => this.alertDe(true)}>
+                复制
+              </Menu.Item>
+            </Menu>
+          );
+          return <Fragment>
+            <Dropdown overlay={menu} trigger={['click']}>
+              <a href="#">查看</a>
+            </Dropdown><br />
+            <a href="#">复制</a><br />
+            <a href="#">管理负毛利商品</a><br />
+            <a href="#">查看领取结果</a><br />
+            <a href="#">查看日志</a><br />
+            <a href="#">复制链接</a>
           </Fragment>
-        ),
+        },
       },
+      // {
+      //   title: '操作',
+      //   render: () => (
+      //     <Fragment>
+      //       <a href="">配置</a>
+      //       <Divider type="vertical" />
+      //       <a href="">订阅警报</a>
+      //     </Fragment>
+      //   ),
+      // },
     ];
 
     const paginationProps = {
@@ -186,10 +243,9 @@ class CouponTable extends PureComponent {
 
     return (
       <div className={styles.couponTable}>
-        <div className={styles.tableAlert}>
-
-        </div>
+        <div className={styles.tableAlert} />
         <Table
+          scroll={{ x: 1600 }}
           loading={loading}
           rowKey={record => record.key}
           // rowSelection={rowSelection}
